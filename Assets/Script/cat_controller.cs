@@ -40,7 +40,7 @@ public class cat_controller : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         am.SetFloat("speed", Abs(x));
 
-        if (Input.GetButtonDown("Jump") && jump < 4)
+        if (Input.GetButtonDown("Jump") && jump < 2)
             if ( Input.GetButtonDown("Jump") )
             {
                 jump++;

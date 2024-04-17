@@ -1,27 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
 public class item_controller : MonoBehaviour
 {
+    [SerializeField]
+    private TMP_Text scoreText;
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        TMP_Text txt;
-        txt = GameObject.Find("/Canvas/Text").GetComponent<TMP_Text>();
         GameManager.nScore++;
-        txt.text = "" + GameManager.nScore;
-        Destroy(gameObject);
+        scoreText.text = GameManager.nScore.ToString($"Score : {GameManager.nScore}");
+
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+
+        Destroy(gameObject, 0.4f);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        scoreText.text = $"Score : {GameManager.nScore}";
+
         Collider2D c;
         if (!GetComponent<Collider2D>())
         {
-            c= gameObject.AddComponent<BoxCollider2D>();
+            c = gameObject.AddComponent<BoxCollider2D>();
         }
         else
         {
@@ -29,10 +35,5 @@ public class item_controller : MonoBehaviour
         }
         c.isTrigger = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+

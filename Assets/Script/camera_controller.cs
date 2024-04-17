@@ -8,6 +8,6 @@ public class camera_controller : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(obj.position.x, transform.position.y, obj.position.z);
+        transform.position = new Vector3(obj.position.x, transform.position.y, -10);
     }
 }
