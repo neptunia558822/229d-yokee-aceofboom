@@ -8,6 +8,7 @@ using UnityEngine;
 public class cat_controller : MonoBehaviour
 {
     public float speed;
+    int jump;
     float x, sx;
     bool ks;
     Animator am;
@@ -16,6 +17,7 @@ public class cat_controller : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D coll)
     {
         am.SetBool("jump", false);
+        jump = 0;
     }
 
     float Abs(float x)
@@ -26,6 +28,7 @@ public class cat_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        jump = 0;
         am = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sx = transform.localScale.x;
@@ -37,11 +40,13 @@ public class cat_controller : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         am.SetFloat("speed", Abs(x));
 
-        if ( Input.GetButtonDown("Jump") )
-        {
+        if (Input.GetButtonDown("Jump") && jump < 4)
+            if ( Input.GetButtonDown("Jump") )
+            {
+                jump++;
             am.SetBool("jump", true);
             rb.velocity = new Vector2 (rb.velocity.x, 5f);
-        }
+            }
 
         rb.velocity = new Vector2(x * speed, rb.velocity.y);
 
