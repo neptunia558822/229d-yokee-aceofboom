@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class item_controller : MonoBehaviour
 {
@@ -10,13 +11,16 @@ public class item_controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.nScore++;
-        scoreText.text = GameManager.nScore.ToString($"Score : {GameManager.nScore}");
+        if (other.CompareTag("Player"))
+        {
+            GameManager.nScore++;
+            scoreText.text = GameManager.nScore.ToString($"Score : {GameManager.nScore}");
 
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.Play();
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
 
-        Destroy(gameObject, 0.4f);
+            Destroy(gameObject, 0.4f);
+        }
     }
 
     // Start is called before the first frame update

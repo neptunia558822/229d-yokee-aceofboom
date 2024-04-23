@@ -7,6 +7,9 @@ public class GameOver : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene("GameOver");
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
