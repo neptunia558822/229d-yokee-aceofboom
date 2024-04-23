@@ -14,12 +14,7 @@ public class cat_controller : MonoBehaviour
     Animator am;
     Rigidbody2D rb;
 
-    /*public GameObject bulletPrefab;
-    public Transform firePoint;
-    public float bulletSpeed = 5f;*/
-
     public Transform shootPoint;
-    public GameObject target;
     public Rigidbody2D bullet;
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -44,18 +39,6 @@ public class cat_controller : MonoBehaviour
         return projectileVelocity;
     }
 
-    /*void Shoot()
-    {
-        Vector2 targetPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 projectileVelocity = CalculateProjectile(firePoint.position, targetPoint, 1f);
-
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = projectileVelocity * bulletSpeed;
-        Destroy(bullet, 2f); // ทำให้กระสุนหายไปหลังจาก 2 วินาที
-    }*/
-
-    // Start is called before the first frame update
     void Start()
     {
         jump = 0;
@@ -88,11 +71,6 @@ public class cat_controller : MonoBehaviour
             transform.localScale = new Vector3(-sx, transform.localScale.y, transform.localScale.z);
         }
 
-        /*if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }*/
-
         if (Input.GetKeyDown(KeyCode.F))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -102,9 +80,6 @@ public class cat_controller : MonoBehaviour
 
             if (hit.collider != null)
             {
-                target.transform.position = new Vector2(hit.point.x, hit.point.y);
-                Debug.Log("Hit point : " + hit.point);
-
                 Vector2 projectileV = CalculateProjectile(shootPoint.position, hit.point, 1);
 
                 Rigidbody2D spawnBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
