@@ -13,6 +13,12 @@ public class ScaneWin : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ResetGame(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void ExitGame()
     {
         Application.Quit();
